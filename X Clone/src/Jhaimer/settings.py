@@ -38,7 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tweet',
+    'tailwind',
+    'tailwind_app',
+    'django_browser_reload',
 ]
+
+TAILWIND_APP_NAME = 'tailwind_app' # This is the name of the app that will be created by tailwindcss and this is the app where all the tailwindcss files will be stored and managed.
+
+INTERNAL_IPS = ['127.0.0.1'] # this is for debug toolbar to work properly in development mode only.
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,9 +56,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
-ROOT_URLCONF = 'Jhaimer.urls'
+ROOT_URLCONF = 'Jhaimer.urls' # this is the main url configuration file for the project jhaimer project. 
 
 TEMPLATES = [
     {
@@ -68,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Jhaimer.wsgi.application'
+WSGI_APPLICATION = 'Jhaimer.wsgi.application' 
 
 
 # Database

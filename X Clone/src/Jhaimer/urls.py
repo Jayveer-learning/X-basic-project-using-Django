@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tweet/', include('tweet.urls')),
+
+    path('__reload__/', include('django_browser_reload.urls')) # add this line to enable browser reload feature in development mode only not in production because it is not secure to use in production. 
 ]
 # + static(
 #     settings.MEDIA_URL, document_root = settings.MEDIA_ROOT
@@ -28,7 +32,7 @@ urlpatterns = [
 
 # use in production for media routing. we use web server like Nginx or Apache to server your media files like images, videos
 
-if settings.DEBUG:  # execute only when DEBUG is True
+if settings.DEBUG:  # execute only when DEBUG is True. use web server in profuction. 
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
         )
