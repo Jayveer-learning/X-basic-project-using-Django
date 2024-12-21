@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'tweet',
     'tailwind',
     'tailwind_app',
+    'bootstrap5',
     'django_browser_reload',
 ]
 
