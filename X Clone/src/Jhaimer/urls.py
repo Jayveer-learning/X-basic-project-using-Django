@@ -26,8 +26,7 @@ urlpatterns = [
 #     settings.MEDIA_URL, document_root = settings.MEDIA_ROOT
 #     ) # use in development for media rouding.
 
-# use in production for media routing. we use web server like 
-# Nginx or Apache to server your media files like images, videos
+# use in production for media routing. we use web server like Nginx or Apache to server your media files like images, videos
 
 if settings.DEBUG:  # execute only when DEBUG is True
     urlpatterns += static(
