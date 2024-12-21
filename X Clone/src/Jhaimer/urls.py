@@ -22,8 +22,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('tweet/', include('tweet.urls')),
-    path('', views.home, name='home'),
+    path('', include('tweet.urls')),
 
     path('__reload__/', include('django_browser_reload.urls')) # add this line to enable browser reload feature in development mode only not in production because it is not secure to use in production. 
 ]
