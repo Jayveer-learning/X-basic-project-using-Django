@@ -40,7 +40,7 @@ def tweet_edit(request, tweet_id):
             tweet.save()
             return redirect('tweet_list')
     else:
-        form = TweetForm(instance=Tweet) # instance=tweet is used to populate the form with the tweet that we want to edit. 
+        form = TweetForm(instance=tweet) # instance=tweet is used to populate the form with the tweet that we want to edit. 
     return render(request, 'apps/tweet_form.html', {'form': form})
 
 # delete tweet
