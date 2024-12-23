@@ -5,12 +5,12 @@ tweet list
 {% endblock %}
 
 {% block content %}
-<h1 class='text-center mt-4 text-white'>Welcome to X.com Lol clone</h1>
+<h2 class='text-center mt-4 text-white'>Trending Tweets</h2>
 
 <a class='btn btn-primary mt-2 mb-4 mx-3' href="{% url "tweet_create" %}">
-    create a tweet
+    Create a Tweet 
 </a>
-<div class='container row gap-3'>
+<div class='container row gap-3 mb-4'>
     {% for tweet in tweets %}
     <div class="card" style="width: 18rem;">
         <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">

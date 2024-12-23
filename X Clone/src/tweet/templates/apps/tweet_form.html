@@ -5,5 +5,23 @@ tweet form
 {% endblock %}
 
 {% block content %}
-<h1 class='text-center mt-4'>Welcome to X.com Lol clone</h1>
+<button class='back-to btn btn-danger'>Back</button>
+<h2 class='mt-4 text-white'>
+    
+    {% if form.instance.pk %} <!-- means form have instance its means form alredy felled that means user what edit form if form does not have any form.instance.pk so user have to create form -->
+    Edit Tweet
+    {% else %} 
+    Creat Tweet
+    {% endif %}  
+    <form method='POST' enctype='multipart/form-data' class='form mt-2 text-center'>
+        {% csrf_token %}
+        <div class='justify-center'>
+            {{ form.as_p }} <!-- form.as_p means render form as paragraph elements -->
+            <button class='btn btn-warning' type='submit'>Submit</button>
+        </div>
+    </form>
+</h2>
+
+
+
 {% endblock %}

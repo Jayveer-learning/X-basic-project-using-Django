@@ -10,6 +10,14 @@
             base file 
         {% endblock %}
     </title>
+    <style>
+      #id_text{
+        height: 180px;
+        width: 500px;
+      }
+    </style>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% comment %} {% tailwind_css %} {% endcomment %}
 
     {% comment %} bootstrap5 {% endcomment %}
@@ -27,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="{% url 'tweet_list' %}">Tweets</a>
+            <a class="nav-link active text-white" aria-current="page" href="{% url 'tweet_list' %}">Tweet</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Link</a>
@@ -57,9 +65,10 @@
       <main>
         <section>
             {% block content %}
-
             {% endblock %}
         </section>
       </main>
+
+    <script src='{% static "Js/script.js" %}'></script> 
 </body>
 </html>

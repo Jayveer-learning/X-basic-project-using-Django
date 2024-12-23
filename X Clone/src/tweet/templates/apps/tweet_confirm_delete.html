@@ -5,5 +5,10 @@ tweet confirm delete
 {% endblock %}
 
 {% block content %}
-<h1 class='text-center mt-4'>Welcome to X.com Lol clone</h1>
+<h2 class='text-center my-4 text-danger'>Are you sure  that you want to delete this tweet </h2>
+<form method='POST'>
+    {% csrf_token %}
+    <button class='btn btn-danger m-4'>Delete</button>
+    <a class='btn btn-success' href="{% url 'tweet_list' %}">Cancel</a>
+</form>
 {% endblock %}
