@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+from django.contrib.auth.urls import views as auth_views # import the django built-in authentication views for routing the authentication urls to the main urls.py file for routing the authentication urls.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('tweet.urls')),
+    path('', include('tweet.urls')), # include the tweet app urls.py file to the main urls.py file for routing the urls of the tweet app. 
+    path('accounts/', include('django.contrib.auth.urls')), # include the django built-in authentication urls to the main urls.py file for routing the authentication urls. 
+
 
     path('__reload__/', include('django_browser_reload.urls')) # add this line to enable browser reload feature in development mode only not in production because it is not secure to use in production. 
 ]

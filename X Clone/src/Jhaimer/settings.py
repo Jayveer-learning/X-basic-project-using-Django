@@ -143,3 +143,9 @@ NPM_BIN_PATH = 'C:\\Program Files\\nodejs\\npm.cmd'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# login and redirection of urls for login, logout
+LOGIN_URL = '/accounts/login/'
+
+LOGIN_REDIRECT_URL = '/tweet/'
+LOGOUT_REDIRECT_URL ='/tweet/'

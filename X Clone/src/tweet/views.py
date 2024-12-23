@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Tweet
-from .forms import TweetForm
+from .forms import TweetForm, UserRegistraionForm
 from django.shortcuts import get_object_or_404 
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 # Create your views here.
 
 def index(request):
@@ -14,6 +15,7 @@ def tweet_list(request):
     return render(request, 'apps/tweet_list.html', {'tweets': tweets}) # pass the tweets to the templates. 
 
 # create tweet 
+@login_required
 def tweet_create(request):
     # this is a standard way to get form from user. 
     if request.method == 'POST':
@@ -29,6 +31,7 @@ def tweet_create(request):
     return render(request, 'apps/tweet_form.html', {'form': form})
 
 # edit tweet
+@login_required
 def tweet_edit(request, tweet_id):
     # get_object_or_404 is a function that is used to get an object from the database or return a 404 page if the object doesn't exits in the database. but here we give three arguments to the function. the first argument is the model that we want to get the object from database. the second argument is the primary key of the object that we want to get means in Tweet model have a many tweet objects so help of pk=tweet_id we get the particular tweet object from the database that we want to edit and the third argument is the user=request.user is used to make sure that the user that currently logged in is the user that created the tweet if not give 404 page.   
     tweet = get_object_or_404(Tweet, pk=tweet_id, user=request.user) # get the tweet that we want to edit by using the get_object_or_404 function that takes the model and the primary key of the object the we want to get and it will return the object if it exists or return a 404 page of it doesn't exits  pk=tweet_id is the primary key of the tweet that we want to edit. user=request.user is used to make sure that the user that is currenlty logged in is the user that created the tweet. 
@@ -44,6 +47,7 @@ def tweet_edit(request, tweet_id):
     return render(request, 'apps/tweet_form.html', {'form': form})
 
 # delete tweet
+@login_required
 def tweet_delete(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id, user=request.user) # if form was not filled its give 404 error
     if request.method == 'POST':
@@ -51,3 +55,15 @@ def tweet_delete(request, tweet_id):
         return redirect('tweet_list')
     return render(request, 'apps/tweet_confirm_delete.html', {'tweet': tweet})
 
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistraionForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password1'])
+            user.save()
+            login(request, user)
+            return redirect('tweet_list')
+    else:
+        form = UserRegistraionForm()
+    return render(request, 'registration/register.html', {'form': form})
