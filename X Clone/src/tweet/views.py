@@ -67,3 +67,14 @@ def register(request):
     else:
         form = UserRegistraionForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+# search tweet 
+def tweet_search(request):
+    if request.method == 'GET':
+        query = request.GET.get('query', '')
+        tweets = Tweet.objects.filter(text__icontains=query)
+        return render(request, 'apps/search_result.html', {'tweets': tweets})
+    else:
+        return redirect('tweet_list')
+        
